@@ -1,11 +1,8 @@
-# minhook-sys
+# minhook-detours-sys
 
-[![crates.io](https://img.shields.io/crates/v/minhook-sys.svg)](https://crates.io/crates/minhook-sys)
-[![Documentation](https://docs.rs/minhook-sys/badge.svg)](https://docs.rs/minhook-sys)
+Raw Rust bindings to [minhook-detours](https://github.com/m417z/minhook-detours/), the MinHook API wrapper over [KNSoft.SlimDetours](https://github.com/KNSoft/KNSoft.SlimDetours).
 
-Raw bindings to [MinHook](http://www.codeproject.com/KB/winsdk/LibMinHook.aspx), the
-minimalistic x86/x64 API hooking library for Windows.
+Compiles SlimDetours and MinHook with [cc](https://crates.io/crates/cc).
 
-MinHook is bundled and built with `cc`. Cross-compiling from Linux works fine.
-
-License: BSD-2-Clause
+# License
+[License: BSD-2-Clause](./LICENSE)
