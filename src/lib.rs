@@ -39,7 +39,6 @@ pub type MH_ERROR_CALLBACK =
 unsafe extern "C" {
     pub fn MH_Initialize() -> MH_STATUS;
     pub fn MH_Uninitialize() -> MH_STATUS;
-
     pub fn MH_SetThreadFreezeMethod(method: MH_THREAD_FREEZE_METHOD) -> MH_STATUS;
     pub fn MH_SetBulkOperationMode(
         continueOnError: BOOL,
