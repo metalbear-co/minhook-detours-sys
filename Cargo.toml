@@ -2,8 +2,15 @@
 name = "minhook-detours-sys"
 version = "0.1.0"
 authors = ["Gabriela Cristei <cristei.g772@gmail.com", "Ivan Molodetskikh <yalterz@gmail.com>"]
-description = "Raw bindings to MinHook Detours."
+description = "Raw bindings to MinHook Detours, the MinHook API wrapping around KNSoft.SlimDetours."
 edition = "2024"
+
+license = "BSD-2-Clause"
+readme = "README.md"
+repository = "https://github.com/cristeigabriela/minhook-detours-sys"
+
+keywords = ["minhook", "slimdetours", "hook", "detour", "crossplatform"]
+cactegories = ["external-ffi-bindings"]
 
 [build-dependencies]
 cc = "1.0.54"
