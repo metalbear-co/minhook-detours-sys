@@ -1,7 +1,7 @@
 use std::{env, path::Path};
 
 fn main() {
-    if let Ok(_) = env::var("DOCS_RS") {
+    if env::var("DOCS_RS").is_ok() {
         // Docs don't need to build the library.
         return;
     }
@@ -10,9 +10,9 @@ fn main() {
         panic!("only Windows is supported");
     }
 
-    println!("cargo:rerun-if-changed=minhook-detours");
+    println!("cargo:rerun-if-changed=vendor/minhook-detours");
 
-    let minhook_dir = Path::new("minhook-detours");
+    let minhook_dir = Path::new("vendor/minhook-detours");
     let phnt_dir = minhook_dir.join("phnt");
     let slimdetours_dir = minhook_dir.join("SlimDetours");
 
