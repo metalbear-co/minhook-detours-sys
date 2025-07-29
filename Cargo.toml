@@ -1,17 +1,15 @@
 [package]
-name = "minhook-sys"
-version = "0.1.1" # remember to update html_root_url
-authors = ["Ivan Molodetskikh <yalterz@gmail.com>"]
-description = "Raw bindings to MinHook."
-edition = "2018"
-license = "BSD-2-Clause"
-
-repository = "https://github.com/YaLTeR/minhook-sys"
-keywords = ["intercept"]
-categories = ["external-ffi-bindings"]
+name = "minhook-detours-sys"
+version = "0.1.0"
+authors = ["Gabriela Cristei <cristei.g772@gmail.com", "Ivan Molodetskikh <yalterz@gmail.com>"]
+description = "Raw bindings to MinHook Detours."
+edition = "2024"
 
 [build-dependencies]
 cc = "1.0.54"
+
+[dependencies]
+bindgen = "0.72.0"
 
 [package.metadata.docs.rs]
 targets = ["x86_64-pc-windows-msvc", "i686-pc-windows-msvc"]

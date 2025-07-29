@@ -10,35 +10,21 @@ fn main() {
         panic!("only Windows is supported");
     }
 
-    let hde = match env::var("CARGO_CFG_TARGET_ARCH").unwrap().as_str() {
-        "x86" => "hde/hde32.c",
-        "x86_64" => "hde/hde64.c",
-        _ => panic!("only x86 and x86_64 architectures are supported"),
-    };
+    println!("cargo:rerun-if-changed=minhook-detours");
 
-    println!("cargo:rerun-if-changed=minhook/include");
-    println!("cargo:rerun-if-changed=minhook/include/MinHook.h");
-    println!("cargo:rerun-if-changed=minhook/src");
-    println!("cargo:rerun-if-changed=minhook/src/buffer.c");
-    println!("cargo:rerun-if-changed=minhook/src/buffer.h");
-    println!("cargo:rerun-if-changed=minhook/src/hde");
-    println!("cargo:rerun-if-changed=minhook/src/hde/hde32.c");
-    println!("cargo:rerun-if-changed=minhook/src/hde/hde32.h");
-    println!("cargo:rerun-if-changed=minhook/src/hde/hde64.c");
-    println!("cargo:rerun-if-changed=minhook/src/hde/hde64.h");
-    println!("cargo:rerun-if-changed=minhook/src/hde/pstdint.h");
-    println!("cargo:rerun-if-changed=minhook/src/hde/table32.h");
-    println!("cargo:rerun-if-changed=minhook/src/hde/table64.h");
-    println!("cargo:rerun-if-changed=minhook/src/hook.c");
-    println!("cargo:rerun-if-changed=minhook/src/trampoline.c");
-    println!("cargo:rerun-if-changed=minhook/src/trampoline.h");
-
-    let src_dir = Path::new("minhook/src");
+    let minhook_dir = Path::new("minhook-detours");
+    let phnt_dir = minhook_dir.join("phnt");
+    let slimdetours_dir = minhook_dir.join("SlimDetours");
 
     cc::Build::new()
-        .file(src_dir.join("buffer.c"))
-        .file(src_dir.join("hook.c"))
-        .file(src_dir.join("trampoline.c"))
-        .file(src_dir.join(hde))
+        .include(phnt_dir)
+        .file(minhook_dir.join("MinHook.c"))
+        .file(slimdetours_dir.join("Trampoline.c"))
+        .file(slimdetours_dir.join("Transaction.c"))
+        .file(slimdetours_dir.join("Thread.c"))
+        .file(slimdetours_dir.join("Memory.c"))
+        .file(slimdetours_dir.join("Instruction.c"))
+        .file(slimdetours_dir.join("InlineHook.c"))
+        .file(slimdetours_dir.join("Disassembler.c"))
         .compile("MinHook");
 }
