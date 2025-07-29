@@ -32,8 +32,6 @@ fn simple_detour() {
         assert_eq!(status, MH_OK);
         assert_ne!(original, std::ptr::null_mut());
 
-        MH_SetThreadFreezeMethod(MH_FREEZE_METHOD_FAST_UNDOCUMENTED);
-
         ORIGINAL = Some(std::mem::transmute(original));
 
         let status = MH_EnableHook(target);
