@@ -1,4 +1,5 @@
 //! MinHook Detours bindings generated with `bindgen`.
+#![cfg(target_os = "windows")]
 #![cfg(any(target_arch = "aarch64", target_arch = "x86", target_arch = "x86_64"))]
 #![allow(non_snake_case)]
 #![allow(non_camel_case_types)]
