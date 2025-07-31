@@ -2,21 +2,12 @@ use minhook_detours_sys::*;
 
 #[test]
 fn simple_detour() {
-    static mut ORIGINAL: Option<unsafe extern "system" fn(i32, i32) -> i64> = None;
 
     unsafe extern "system" fn add_two(lhs: i32, rhs: i32) -> i64 {
         (lhs + rhs) as i64
     }
 
     unsafe extern "system" fn add_two_hook(lhs: i32, rhs: i32) -> i64 {
-        unsafe {
-            let original = ORIGINAL.unwrap();
-
-            MH_DisableHook(add_two as _);
-            println!("original: {}", original(lhs, rhs));
-            MH_EnableHook(add_two as _);
-        }
-
         (lhs - rhs) as i64
     }
 
@@ -41,5 +32,10 @@ fn simple_detour() {
         // `(lhs - rhs)`. Therefore, we expect the result to be `0` (`2 - 2 = 0`).
         let result = add_two(2, 2);
         assert_eq!(result, 0);
+
+        let status = MH_DisableHook(target);
+        assert_eq!(add_two(2,2), 4);
+
+        let status = MH_Uninitialize();
     }
 }
