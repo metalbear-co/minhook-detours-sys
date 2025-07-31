@@ -23,8 +23,6 @@ fn simple_detour() {
         assert_eq!(status, MH_OK);
         assert_ne!(original, std::ptr::null_mut());
 
-        ORIGINAL = Some(std::mem::transmute(original));
-
         let status = MH_EnableHook(target);
         assert_eq!(status, MH_OK);
 
@@ -34,8 +32,10 @@ fn simple_detour() {
         assert_eq!(result, 0);
 
         let status = MH_DisableHook(target);
+        assert_eq!(status, MH_OK);
         assert_eq!(add_two(2,2), 4);
 
         let status = MH_Uninitialize();
+        assert_eq!(status, MH_OK);
     }
 }
