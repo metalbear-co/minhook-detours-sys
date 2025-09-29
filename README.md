@@ -1,7 +1,5 @@
 # minhook-detours-sys
 
-Available on [crates.io](https://crates.io/crates/minhook-detours-sys).
-
 Raw Rust bindings to [minhook-detours](https://github.com/m417z/minhook-detours/), the MinHook API wrapper over [KNSoft.SlimDetours](https://github.com/KNSoft/KNSoft.SlimDetours).
 
 Compiles SlimDetours and MinHook with [cc](https://crates.io/crates/cc).
